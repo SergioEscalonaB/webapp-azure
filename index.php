@@ -1,12 +1,10 @@
 <?php
-header("Content-Type: text/html; charset=utf-8");
-
 // Configuración de la base de datos
 $db_host = getenv('DB_HOST') ?: 'rubrica-proyecto.postgres.database.azure.com';
 $db_port = getenv('DB_PORT') ?: 5432;
 $db_name = getenv('DB_NAME') ?: 'postgres';
-$db_user = getenv('DB_USER') ?: 'tu_usuario@rubrica-proyecto';
-$db_password = getenv('DB_PASSWORD') ?: 'tu_contraseña';
+$db_user = getenv('DB_USER');
+$db_password = getenv('DB_PASSWORD');
 
 // Función para conectar a PostgreSQL
 function connectDB() {
@@ -43,8 +41,6 @@ if ($_POST['action'] ?? '' === 'insert') {
     insertData();
     exit;
 }
-
-// HTML de la aplicación
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -80,7 +76,6 @@ if ($_POST['action'] ?? '' === 'insert') {
             margin-bottom: 25px;
             border-radius: 4px;
         }
-        .status-box h3 { color: #667eea; font-size: 16px; margin-bottom: 8px; }
         .button-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -104,13 +99,11 @@ if ($_POST['action'] ?? '' === 'insert') {
             box-shadow: 0 5px 15px rgba(102,126,234,0.4);
         }
         button.secondary { background: #764ba2; }
-        button.secondary:hover { background: #663d8f; }
         .form-section {
             margin-top: 30px;
             padding-top: 30px;
             border-top: 2px solid #e9ecef;
         }
-        .form-section h3 { color: #333; margin-bottom: 20px; font-size: 18px; }
         .form-group { margin-bottom: 20px; }
         label {
             display: block;
@@ -278,14 +271,12 @@ if ($_POST['action'] ?? '' === 'insert') {
     </script>
 </body>
 </html>
-
 <?php
-// Funciones PHP para manejar la base de datos
 function testConnection() {
     $dbconn = connectDB();
     
     if (!$dbconn) {
-        echo json_encode(['success' => false, 'error' => 'No se pudo conectar a la base de datos']);
+        echo json_encode(['success' => false, 'error' => 'No se pudo conectar a la base de datos: ' . pg_last_error()]);
         return;
     }
     
