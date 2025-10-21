@@ -1,6 +1,0 @@
-{
-    "name": "azure-php-app",
-    "require": {
-        "php": ">=8.0"
-    }
-}
