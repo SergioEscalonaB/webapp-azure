@@ -1,9 +1,12 @@
 {
     "name": "azure-webapp-php",
+    "description": "Web App para PostgreSQL en Azure",
+    "type": "project",
     "require": {
         "php": ">=8.0"
     },
     "require-dev": {
-        "ext-pgsql": "*"
+        "ext-pgsql": "*",
+        "ext-pdo_pgsql": "*"
     }
 }
