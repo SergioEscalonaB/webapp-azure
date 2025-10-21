@@ -1,0 +1,9 @@
+{
+    "name": "azure-webapp-php",
+    "require": {
+        "php": ">=8.0"
+    },
+    "require-dev": {
+        "ext-pgsql": "*"
+    }
+}
